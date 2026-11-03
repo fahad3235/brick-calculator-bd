@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brick Calculator BD</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <h1 id="app-title" data-i18n="title">Brick Calculator BD</h1>
+  <p data-i18n="subtitle">Bricks, mortar, cement &amp; cost for your walls</p>
+  <button id="lang-toggle" type="button">বাংলা</button>
+</header>
+<main>
+  <section>
+    <h2 data-i18n="walls">Walls</h2>
+    <div id="walls-list"></div>
+    <button id="btn-add-wall" type="button" data-i18n="addWall">Add wall</button>
+  </section>
+  <section>
+    <h2 data-i18n="openings">Openings deducted</h2>
+    <div class="grid">
+      <label><span data-i18n="doors">Doors</span> <input id="doors" type="number" min="0" step="1" value="0"></label>
+      <label><span data-i18n="doorArea">Area per door (sq ft)</span> <input id="door-area" type="number" min="0" step="0.5" value="21"></label>
+      <label><span data-i18n="windows">Windows</span> <input id="windows" type="number" min="0" step="1" value="0"></label>
+      <label><span data-i18n="windowArea">Area per window (sq ft)</span> <input id="window-area" type="number" min="0" step="0.5" value="15"></label>
+    </div>
+  </section>
+  <section>
+    <h2 data-i18n="options">Options</h2>
+    <div class="grid">
+      <label><span data-i18n="wastage">Wastage (%)</span> <input id="wastage" type="number" min="0" max="50" step="1" value="5"></label>
+      <label><span data-i18n="ratio">Cement : sand ratio</span>
+        <select id="ratio">
+          <option value="4" selected>1 : 4</option>
+          <option value="5">1 : 5</option>
+          <option value="6">1 : 6</option>
+        </select>
+      </label>
+    </div>
+  </section>
+  <section>
+    <h2 data-i18n="prices">Prices (optional — leave blank to skip cost)</h2>
+    <div class="grid">
+      <label><span data-i18n="brickPrice">Brick price (৳ each)</span> <input id="price-brick" type="number" min="0" step="0.01"></label>
+      <label><span data-i18n="cementPrice">Cement price (৳ per bag)</span> <input id="price-cement" type="number" min="0" step="1"></label>
+      <label><span data-i18n="sandPrice">Sand price (৳ per cft)</span> <input id="price-sand" type="number" min="0" step="1"></label>
+    </div>
+  </section>
+  <p id="calc-error" class="error" hidden></p>
+  <button id="btn-calc" type="button" class="primary" data-i18n="calculate">Calculate</button>
+  <section id="result-card" hidden>
+    <h2 data-i18n="results">Estimate</h2>
+    <dl>
+      <div><dt data-i18n="grossArea">Gross wall area</dt><dd><span id="res-gross"></span> sq ft</dd></div>
+      <div><dt data-i18n="openingsArea">Openings area</dt><dd><span id="res-openings"></span> sq ft</dd></div>
+      <div><dt data-i18n="netArea">Net wall area</dt><dd><span id="res-net"></span> sq ft</dd></div>
+      <div><dt data-i18n="bricks">Bricks needed (with wastage)</dt><dd id="res-bricks"></dd></div>
+      <div><dt data-i18n="bricksRaw">Bricks before wastage</dt><dd id="res-bricks-raw"></dd></div>
+      <div><dt data-i18n="mortar">Mortar (dry volume)</dt><dd><span id="res-mortar"></span> cft</dd></div>
+      <div><dt data-i18n="cement">Cement</dt><dd id="res-cement"></dd></div>
+      <div><dt data-i18n="sand">Sand</dt><dd><span id="res-sand"></span> cft</dd></div>
+    </dl>
+    <h3 data-i18n="cost">Estimated cost</h3>
+    <div id="cost-box"></div>
+    <button id="btn-save" type="button" data-i18n="save">Save this estimate</button>
+    <p id="save-msg" class="msg" hidden></p>
+  </section>
+  <section>
+    <h2 data-i18n="saved">Saved estimates</h2>
+    <p id="saved-empty" data-i18n="noSaved">No saved estimates yet.</p>
+    <ul id="saved-list"></ul>
+    <button id="btn-export" type="button" data-i18n="export">Export JSON</button>
+    <label class="file-label"><span data-i18n="import">Import JSON</span> <input id="file-import" type="file" accept=".json,application/json"></label>
+    <button id="btn-clear" type="button" data-i18n="clearAll">Clear all</button>
+  </section>
+</main>
+<footer><p data-i18n="footer">Educational estimator only.</p></footer>
+<script src="js/logic.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
